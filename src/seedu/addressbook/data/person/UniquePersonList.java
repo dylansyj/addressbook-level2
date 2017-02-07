@@ -131,4 +131,18 @@ public class UniquePersonList implements Iterable<Person> {
                 || (other instanceof UniquePersonList // instanceof handles nulls
                         && this.internalList.equals(((UniquePersonList) other).internalList));
     }
+    
+    public String getListofTaggingActions(){
+    	StringBuilder strBuilder = new StringBuilder();
+    	Iterator itr = iterator();
+    	while(itr.hasNext()){
+    		Person person = (Person) itr.next();
+    		List<Tagging> tempTagList = person.getTaggings();
+    		while(!tempTagList.isEmpty()){
+    			Tagging extractedTagging = tempTagList.remove(0);
+    			strBuilder.append(extractedTagging.getType() + person.getName() + extractedTagging.getTag() + "\n"); // Appends Eg. - John [scrub] 
+    		}
+    	}
+    	return strBuilder.toString();
+    }
 }

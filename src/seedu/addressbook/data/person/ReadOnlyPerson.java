@@ -1,5 +1,7 @@
 package seedu.addressbook.data.person;
 
+import java.util.List;
+
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
@@ -19,6 +21,7 @@ public interface ReadOnlyPerson {
      * changes on the returned list will not affect the person's internal tags.
      */
     UniqueTagList getTags();
+    List<Tagging> getTaggings();
 
     /**
      * Returns true if the values inside this object is same as those of the other

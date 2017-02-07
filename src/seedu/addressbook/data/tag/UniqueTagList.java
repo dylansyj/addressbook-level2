@@ -11,6 +11,7 @@ import java.util.Set;
 
 import seedu.addressbook.common.Utils;
 import seedu.addressbook.data.exception.DuplicateDataException;
+import seedu.addressbook.data.person.Tagging;
 
 
 /**
@@ -37,7 +38,18 @@ public class UniqueTagList implements Iterable<Tag> {
     public static class TagNotFoundException extends Exception {}
 
     private final List<Tag> internalList = new ArrayList<>();
-
+    
+    /*
+     * 
+     * List to be printed out for each person after AddressBook is closed
+     * Contains Type and Tag
+     * 
+     */
+    private List<Tagging> internalTaggingList = new ArrayList<>(); 
+    
+    public List<Tagging> getTaggingList(){ 
+    	return internalTaggingList;
+    }
     /**
      * Constructs an empty TagList.
      */
@@ -102,6 +114,7 @@ public class UniqueTagList implements Iterable<Tag> {
             throw new DuplicateTagException();
         }
         internalList.add(toAdd);
+        internalTaggingList.add(new Tagging("ADD", toAdd));
     }
 
     /**
@@ -135,6 +148,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) throws TagNotFoundException {
         final boolean tagFoundAndDeleted = internalList.remove(toRemove);
+        internalTaggingList.add(new Tagging("REMOVE", toRemove));
         if (!tagFoundAndDeleted) {
             throw new TagNotFoundException();
         }

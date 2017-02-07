@@ -39,6 +39,7 @@ public class Main {
     public void run(String[] launchArgs) {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
+        System.out.println(addressBook.getAllPersons().getListofTaggingActions());
         exit();
     }
 
